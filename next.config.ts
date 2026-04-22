@@ -25,6 +25,7 @@ const nextConfig: NextConfig = {
       }
     ],
   },
+  basePath: '/faceitfinder',
 };
 
 export default nextConfig;
