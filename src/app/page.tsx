@@ -85,7 +85,7 @@ function HomeContent() {
 
     const url = new URL(window.location.href);
     url.searchParams.set('q', searchQuery);
-    router.replace(url.pathname + url.search, { scroll: false });
+    router.replace('/' + url.search, { scroll: false });
 
     try {
       const res = await fetch(`/api/player?query=${encodeURIComponent(searchQuery)}`);
