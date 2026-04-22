@@ -77,6 +77,17 @@ function HomeContent() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  function updateUrl(searchQuery: string) {
+    const url = new URL(window.location.href);
+    url.searchParams.set('q', searchQuery);
+    router.replace('/' + url.search, { scroll: false });
+  }
+
+  function onUserSearch(searchQuery: string) {
+    updateUrl(searchQuery);
+    handleSearch(searchQuery);
+  }
+
   async function handleSearch(searchQuery: string) {
     setQuery(searchQuery);
     setIsLoading(true);
@@ -86,10 +97,6 @@ function HomeContent() {
     setMatches(null);
     setSteamStats(null);
     setBans(null);
-
-    const url = new URL(window.location.href);
-    url.searchParams.set('q', searchQuery);
-    router.replace('/' + url.search, { scroll: false });
 
     try {
       const res = await fetch(`${BASE_PATH}/api/player?query=${encodeURIComponent(searchQuery)}`);
@@ -149,14 +156,14 @@ function HomeContent() {
               <FaceitLogo className="shrink-0 text-base sm:text-4xl" />
               <div className="flex-1">
                 <SearchInput
-                  onSearch={handleSearch}
+                  onSearch={onUserSearch}
                   isLoading={isLoading}
                   defaultValue={query}
                 />
               </div>
             </div>
           ) : (
-            <SearchInput onSearch={handleSearch} isLoading={isLoading} />
+            <SearchInput onSearch={onUserSearch} isLoading={isLoading} />
           )}
         </div>
       </header>
