@@ -21,8 +21,6 @@ import type {
 import type { SteamAccountStats } from '@/lib/steam';
 import nextConfig from '../../next.config';
 
-const BASE_PATH = nextConfig.basePath;
-console.log(BASE_PATH)
 
 function SkeletonBlock({ className }: { className?: string }) {
   return <div className={clsx('skeleton', className)} />;
@@ -99,7 +97,7 @@ function HomeContent() {
     setBans(null);
 
     try {
-      const res = await fetch(`${BASE_PATH}/api/player?query=${encodeURIComponent(searchQuery)}`);
+      const res = await fetch(`/api/player?query=${encodeURIComponent(searchQuery)}`);
       const data: PlayerSearchResult & { error?: string } = await res.json();
 
       if (!res.ok || data.error) {
@@ -114,8 +112,8 @@ function HomeContent() {
       setBans(data.bans ?? null);
 
       const [statsRes, matchesRes] = await Promise.all([
-        fetch(`${BASE_PATH}/api/player/${data.player.player_id}/stats?game=${data.game}`),
-        fetch(`${BASE_PATH}/api/player/${data.player.player_id}/matches?game=${data.game}&limit=20`),
+        fetch(`/api/player/${data.player.player_id}/stats?game=${data.game}`),
+        fetch(`/api/player/${data.player.player_id}/matches?game=${data.game}&limit=20`),
       ]);
 
       if (statsRes.ok) setStats(await statsRes.json());
