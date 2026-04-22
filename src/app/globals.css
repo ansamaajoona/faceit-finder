@@ -1,0 +1,46 @@
+@import "tailwindcss";
+
+@theme {
+  --color-faceit-orange: #FF5500;
+  --color-faceit-orange-hover: #FF6900;
+  --color-faceit-dark: #141616;
+  --color-faceit-card: #0A0C0C;
+  --color-faceit-card-hover: #1F1F25;
+  --color-faceit-card-dim: #141418;
+  --color-faceit-border: #2A2A35;
+  --color-faceit-muted: #D7DBDF;
+  --color-faceit-subtle: #3A3A45;
+  --color-faceit-heading: #CCCCCC;
+  --color-faceit-disabled-bg: #3A2A1A;
+  --color-faceit-disabled-text: #6A5A4A;
+}
+
+body {
+  background-color: var(--color-faceit-dark);
+  color: #ffffff;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+}
+
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: var(--color-faceit-card); }
+::-webkit-scrollbar-thumb { background: #3A3A45; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-faceit-orange); }
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-in {
+  animation: fadeIn 0.35s ease forwards;
+}
+
+@keyframes shimmer {
+  0%   { background-position: -600px 0; }
+  100% { background-position: 600px 0; }
+}
+.skeleton {
+  background: linear-gradient(90deg, var(--color-faceit-card) 25%, var(--color-faceit-border) 50%, var(--color-faceit-card) 75%);
+  background-size: 600px 100%;
+  animation: shimmer 1.4s infinite;
+  border-radius: 4px;
+}
