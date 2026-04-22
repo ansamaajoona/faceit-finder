@@ -2,13 +2,13 @@
 
 @theme {
   --color-faceit-orange: #FF5500;
-  --color-faceit-orange-hover: #FF6900;
-  --color-faceit-dark: #141616;
-  --color-faceit-card: #0A0C0C;
+  --color-faceit-orange-hover: #FF6B20;
+  --color-faceit-dark: #0A0C0C;
+  --color-faceit-card: #141616;
   --color-faceit-card-hover: #1F1F25;
   --color-faceit-card-dim: #141418;
   --color-faceit-border: #2A2A35;
-  --color-faceit-muted: #D7DBDF;
+  --color-faceit-muted: #8B8B9A;
   --color-faceit-subtle: #3A3A45;
   --color-faceit-heading: #CCCCCC;
   --color-faceit-disabled-bg: #3A2A1A;
