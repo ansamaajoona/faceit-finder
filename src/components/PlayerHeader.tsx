@@ -44,7 +44,7 @@ export default function PlayerHeader({ player, game, bans }: PlayerHeaderProps) 
 
   return (
     <div onClick={() => window.open(profileUrl, "_blank")} className="bg-faceit-card border border-faceit-border rounded-2xl p-6 animate-fade-in hover:cursor-pointer hover:bg-faceit-card-hover transition-colors">
-      <div className="flex items-center gap-5 flex-wrap">
+      <div className="flex items-start gap-4">
         <div className="relative shrink-0">
           {player.avatar ? (
             <Image
@@ -63,8 +63,8 @@ export default function PlayerHeader({ player, game, bans }: PlayerHeaderProps) 
         </div>
 
         <div className="flex-1 min-w-0">
-          <div className="flex items-center gap-3 flex-wrap">
-            <h1 className="text-2xl font-bold truncate">{player.nickname}</h1>
+          <div className="flex items-center gap-2 flex-wrap">
+            <h1 className="text-xl sm:text-2xl font-bold truncate">{player.nickname}</h1>
             {player.verified && (
               <span className="text-orange-500 text-xs font-semibold bg-orange-500/10 border border-orange-500/30 rounded-full px-2 py-0.5">
                 ✓ Verified
@@ -77,7 +77,7 @@ export default function PlayerHeader({ player, game, bans }: PlayerHeaderProps) 
             )}
             {hasActiveBan && (
               <span className="text-red-400 text-xs font-semibold bg-red-500/10 border border-red-500/30 rounded-full px-2 py-0.5">
-                Banned 
+                Banned
               </span>
             )}
           </div>
@@ -95,9 +95,22 @@ export default function PlayerHeader({ player, game, bans }: PlayerHeaderProps) 
             <span className="text-faceit-muted">·</span>
             <span className="text-faceit-muted">Member since {memberSince}</span>
           </div>
+
+          <div className="flex items-center gap-6 mt-3 sm:hidden">
+            <div>
+              <div className="text-faceit-muted text-xs mb-0.5">ELO</div>
+              <div className="text-2xl font-bold text-white">{elo.toLocaleString()}</div>
+              {level < 10 && ELO_THRESHOLDS[level] !== undefined && (
+                <div className="text-faceit-muted text-xs mt-0.5">
+                  {(ELO_THRESHOLDS[level] - elo).toLocaleString()} to lv{level + 1}
+                </div>
+              )}
+            </div>
+            <FaceitLevel level={level} />
+          </div>
         </div>
 
-        <div className="flex items-center gap-8 ml-auto shrink-0">
+        <div className="hidden sm:flex items-center gap-8 shrink-0">
           <div className="text-center">
             <div className="text-faceit-muted text-xs mb-1">ELO</div>
             <div className="text-3xl font-bold text-white">{elo.toLocaleString()}</div>
